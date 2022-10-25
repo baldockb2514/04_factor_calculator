@@ -10,7 +10,7 @@ def num_check(question):
             response = int(input(question))
             
             # checks number is more than zero
-            if response >= 1 and response <= 200:
+            if 1 <= response <=200:
                 return response
             
             # outputs error if input is invalid

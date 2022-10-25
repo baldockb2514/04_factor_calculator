@@ -1,8 +1,8 @@
-def num_check(question):
+def num_check(question, low, high):
     valid = False
     while not valid:
         
-        error = "Please enter a number that is between 1 and 200."
+        error = "Please enter a number that is between {} and {}.".format(low, high)
         
         try:
         
@@ -10,7 +10,7 @@ def num_check(question):
             response = int(input(question))
             
             # checks number is more than zero
-            if response >= 1 and response <= 200:
+            if low <= response <=high:
                 return response
             
             # outputs error if input is invalid
@@ -21,4 +21,4 @@ def num_check(question):
         except ValueError:
             print(error)    
 
-to_factor = num_check("What number do you want to factor? ")
+to_factor = num_check("What number do you want to factor? ", 1, 200)
