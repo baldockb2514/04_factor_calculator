@@ -21,7 +21,7 @@ def instructions():
 
     statement_generator("Instructions / Information", "=")
     print()
-    print("Please insert an integer(whole number) from 1 to 200 ")
+    print("Please choose a number that is equal to or greater than 1, and equal or greater to 200.")
     print()
     print("This calculator gives you the factors of a number, as well if it is a UNITY, perfect square, or prime number")
     print()
@@ -55,7 +55,30 @@ def num_check(question, low, high):
 
 
 # gets factors, returns a sorted list
+def get_factors(to_factor):
 
+    stop = int(to_factor**(0.5))
+
+    factors_list = []
+
+    for item in range(1, stop, +1):
+        # print("to_factor % {}".format(item)) 
+        is_factor = to_factor % item
+
+        # if modulo is 0, the number is a factor
+        if is_factor == 0:
+
+            # gets second factor by dividing 'to factor' by the first factor
+            factor_2 = (to_factor / item)
+
+            factors_list.append(item)
+
+            if factor_2 not in factors_list:
+                factors_list.append(factor_2)
+
+    # output
+    factors_list.sort()
+    return factors_list
 
 
 # Main Routine goes here
@@ -68,3 +91,47 @@ first_time = input("Press <enter> to see the instructions or any key to continue
 
 if first_time == "":
     instructions()
+
+# Loop to allow multiple calculations per session
+keep_going = ""
+while keep_going == "":
+    
+    coment = ""
+
+    # ask user for number to be factored
+    var_to_factor = num_check("Number? ")
+
+    if var_to_factor != 1:
+        factors_list = get_factors(var_to_factor)
+    else:
+        factors_list = ""
+        coment = "One is UNITY!  It only has one factor.  Itself :)"
+
+    # comments for squares / primes
+    if len(factors_list) == 2:
+        comment = "{} is a prime number".format(var_to_factor)
+    elif len(factors_list) % 2 == 1:
+        comment = "{} is a perfect square".format(var_to_factor)
+    
+    # output factors and comments
+
+    # Generate heading...
+    if var_to_factor == 1:
+        heading = "ONe is special..."
+
+    else: 
+        heading - "Factors of {}".formta(var_to_factor)
+
+    # output factors and comment
+    statement_generator(heading, "*")
+    print()
+    print(factors_list)
+    print(comment)
+
+    print()
+    keep_going = input("Press <enter> to continue or any key to quit ")
+    print()
+
+print()
+print("Thank you for using the factors calculator")
+print()

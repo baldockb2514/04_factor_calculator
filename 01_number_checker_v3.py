@@ -21,4 +21,5 @@ def num_check(question, low, high):
         except ValueError:
             print(error)    
 
+print()
 to_factor = num_check("What number do you want to factor? ", 1, 200)
