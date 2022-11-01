@@ -21,11 +21,11 @@ def instructions():
 
     statement_generator("Instructions / Information", "=")
     print()
-    print("Please choose a number that is equal to or greater than 1, and equal or greater to 200.")
+    print("Please choose a number that is equal to or greater than 1, and equal or less than 200.")
     print()
     print("This calculator gives you the factors of a number, as well if it is a UNITY, perfect square, or prime number")
     print()
-    print("Complete as many calculations as necessary, pressing <enter> at the end of each calculation or any key to quit.")
+    print("Complete as many calculations as necessary, pressing <enter> at the end of each calculation to continue, or any key to quit.")
     print()
     return""
 
@@ -61,7 +61,7 @@ def get_factors(to_factor):
 
     factors_list = []
 
-    for item in range(1, stop, +1):
+    for item in range(1, stop +1):
         # print("to_factor % {}".format(item)) 
         is_factor = to_factor % item
 
@@ -71,10 +71,10 @@ def get_factors(to_factor):
             # gets second factor by dividing 'to factor' by the first factor
             factor_2 = (to_factor / item)
 
-            factors_list.append(item)
+            factors_list.append(int(item))
 
             if factor_2 not in factors_list:
-                factors_list.append(factor_2)
+                factors_list.append(int(factor_2))
 
     # output
     factors_list.sort()
@@ -96,16 +96,16 @@ if first_time == "":
 keep_going = ""
 while keep_going == "":
     
-    coment = ""
+    comment = ""
 
     # ask user for number to be factored
-    var_to_factor = num_check("Number? ")
+    var_to_factor = num_check("Number? ", 1, 200)
 
     if var_to_factor != 1:
         factors_list = get_factors(var_to_factor)
     else:
         factors_list = ""
-        coment = "One is UNITY!  It only has one factor.  Itself :)"
+        comment = "One is UNITY!  It only has one factor.  Itself :)"
 
     # comments for squares / primes
     if len(factors_list) == 2:
@@ -117,10 +117,10 @@ while keep_going == "":
 
     # Generate heading...
     if var_to_factor == 1:
-        heading = "ONe is special..."
+        heading = "One is special..."
 
     else: 
-        heading - "Factors of {}".formta(var_to_factor)
+        heading = "Factors of {}".format(var_to_factor)
 
     # output factors and comment
     statement_generator(heading, "*")
